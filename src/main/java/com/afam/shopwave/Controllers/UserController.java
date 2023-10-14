@@ -20,9 +20,5 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<UserModel> GetUsers() {
-        return userService.getusers();
-    }
 
 }
