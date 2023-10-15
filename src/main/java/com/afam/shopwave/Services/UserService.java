@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -78,5 +79,18 @@ public class UserService {
         }
 
         userRepository.save(user);
+    }
+
+    public void loginUser(String email, String password) {
+        Optional<UserModel> userModelOptional = userRepository.findByEmail(email);
+
+        if (userModelOptional.isEmpty()) {
+            throw new EntityNotFoundException("User with email: " + email + "cannot be found");
+        }
+
+        UserModel user = userModelOptional.get();
+
+
+
     }
 }

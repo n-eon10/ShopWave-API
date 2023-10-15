@@ -42,14 +42,23 @@ public class UserController {
     @PutMapping(path = "{userId}")
     public void updateUser(
             @PathVariable("userId") Long userId,
-            @RequestBody(required = false) String email,
-            @RequestBody(required = false) String name,
-            @RequestBody(required = false) String username,
-            @RequestBody(required = false) String password,
-            @RequestBody(required = false) LocalDate dateofbirth
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) LocalDate dateofbirth
 
     ) {
         userService.updateUser(userId, email, name, username, password, dateofbirth);
     }
+
+    @PostMapping(path = "/login")
+    public void loginUser(
+            @RequestBody String email,
+            String password
+    ) {
+        userService.loginUser(email, password);
+    }
+
 
 }
